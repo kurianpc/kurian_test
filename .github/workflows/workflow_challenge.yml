@@ -8,12 +8,9 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - id: step1
       uses: actions/checkout@v2
@@ -34,7 +31,7 @@ jobs:
         DRY_RUN: true
     - id: step4
       name: Build with Maven
-      run: mvn versions:set -DnewVersion=${{ steps.step3.outputs.new_tag }}-SNAPSHOT ; mvn -B package --file pom.xml
+      run: mvn versions:set -DnewVersion=${{ steps.step3.outputs.new_tag }} ; mvn -B package --file pom.xml
     - id: step5
       name: Publish package
       run: mvn --batch-mode deploy
